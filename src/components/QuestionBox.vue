@@ -31,7 +31,7 @@ import _ from 'lodash'
 
 export default {
     props:{
-        currentQuestion: Object,
+        //currentQuestion: Object,
         next: Function,
         increment: Function
     },
