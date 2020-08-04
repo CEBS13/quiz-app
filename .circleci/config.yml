@@ -18,17 +18,17 @@ jobs:
         paths:
           - .
 
-  deploy:
-    executor: aws-cli/default
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - aws-cli/setup:
-          profile-name: default
-      - run:
-          name: Upload file to S3
-          command: aws s3 sync ./dist/ s3://cbarahona.com
+  # deploy:
+  #   executor: aws-cli/default
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: .
+  #     - aws-cli/setup:
+  #         profile-name: default
+  #     - run:
+  #         name: Upload file to S3
+  #         command: aws s3 sync ./dist/ s3://cbarahona.com
 
 workflows: 
   version: 2
@@ -40,12 +40,12 @@ workflows:
           filters:
             branches:
               only: master 
-      - deploy:
-          requires:
-            - build
-            - hold
-          context: aws
-          filters:
-            branches:
-              only: master 
+      # - deploy:
+      #     requires:
+      #       - build
+      #       - hold
+      #     context: aws
+      #     filters:
+      #       branches:
+      #         only: master 
          
