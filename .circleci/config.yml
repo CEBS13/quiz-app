@@ -3,7 +3,7 @@ orbs:
   aws-cli: circleci/aws-cli@1.2.1
 workflows: 
    version: 2
-   build-deploy:
+   build:
      jobs:
        - build
        - hold: 
@@ -19,8 +19,6 @@ workflows:
           filters:
              branches:
                only: master 
-
-
 
 jobs:
   build:
