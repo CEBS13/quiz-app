@@ -1,4 +1,4 @@
-version: 2.0
+version: 2
 
 workflows: 
    version: 2
@@ -9,7 +9,6 @@ workflows:
            requires:
              - build
              - hold
-          context: aws-context   
            filters:
              branches:
                only: master 
@@ -26,7 +25,7 @@ jobs:
       # Bundle install dependencies
       - run: npm install 
       - run: npm run test:unit
-      - run : npm run build
+      - run: npm run build
 
       deploy:
         docker: # Specify executor for running deploy job
