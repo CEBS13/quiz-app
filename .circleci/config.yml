@@ -1,24 +1,6 @@
 version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@1.2.1
-workflows: 
-   version: 2
-   build:
-     jobs:
-       - build
-       - hold: 
-          type: approval 
-          filters:
-            branches:
-              only: master 
-       - deploy:
-          requires:
-             - build
-             - hold
-          context: aws
-          filters:
-             branches:
-               only: master 
 
 jobs:
   build:
@@ -30,6 +12,7 @@ jobs:
       - run: npm install 
       - run: npm run test:unit
       - run: npm run build
+
       - persist_to_workspace:
         root: .
         paths:
@@ -45,4 +28,23 @@ jobs:
       - run:
           name: Upload file to S3
           command: aws s3 sync ./dist/ s3://cbarahona.com
-        
+
+workflows: 
+  version: 2
+  build:
+    jobs:
+      - build
+      - hold: 
+          type: approval 
+          filters:
+            branches:
+              only: master 
+      - deploy:
+          requires:
+            - build
+            - hold
+          context: aws
+          filters:
+            branches:
+              only: master 
+         
