@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="info">
-            <b-navbar-brand disabled>Pruebaaaaaa</b-navbar-brand>
+            <b-navbar-brand disabled>POC Quiz app</b-navbar-brand>
             <b-navbar-nav>
                 <b-nav-item disabled light > Correct: {{numCorrect}}/{{numTotal}}</b-nav-item>
             </b-navbar-nav>
